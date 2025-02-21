@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, FlatList, Switch, StyleSheet } from 'react-native';
+import { View, Text, Image, FlatList, Switch, StyleSheet, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 const projects = [
@@ -12,7 +12,7 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <View style={[styles.container, darkMode ? styles.darkContainer : styles.lightContainer]}>
+    <ScrollView contentContainerStyle={[styles.container, darkMode ? styles.darkContainer : styles.lightContainer]}>
       <StatusBar style={darkMode ? 'light' : 'dark'} />
       
       <Image source={require('./assets/ID Picture.jpg')} style={styles.profilePic} />
@@ -39,15 +39,15 @@ export default function App() {
       />
       
       <View style={styles.themeToggle}>
-        <Text style={[darkMode ? styles.darkText : styles.lightText]}>Dark Mode </Text>
+        <Text style={[darkMode ? styles.darkText : styles.lightText]}>Dark Mode</Text>
         <Switch value={darkMode} onValueChange={setDarkMode} />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', padding: 20 },
+  container: { flexGrow: 1, alignItems: 'center', padding: 20 },
   lightContainer: { backgroundColor: '#fff' },
   darkContainer: { backgroundColor: '#121212' },
   profilePic: { width: 200, height: 200, borderRadius: 50, marginBottom: 10, borderWidth: 3, borderColor: '#000' },
